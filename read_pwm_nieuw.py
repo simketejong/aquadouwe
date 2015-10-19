@@ -1,12 +1,11 @@
 
 #PWM PiFace Motor Speed Controller
-
+import os
 import pifacedigitalio as p
-import datetime, time
-from datetime import timedelta
+from datetime import datetime
 
 p.init()
-t1=datetime.datetime.now()
+t1=datetime.now()
 previous=0
 teller=0
 
@@ -14,11 +13,16 @@ while True:
 	if (p.digital_read(0) == 1) and (previous == 0):
    		teller=teller+1
 	previous=p.digital_read(0)
-	if teller == 200:
-		t2=datetime.datetime.now()    
+	if teller > 50:
+		t2=datetime.now()    
 		delta=t2-t1
-		verhouding=60/delta.seconds
+		delen=delta.total_seconds()
+		verhouding=60/delen
 		rpm=teller*verhouding
-		print"rpm = %d\n\r"%rpm
+		#print"rpm = %f verhouding = %f "%(rpm,verhouding)
 		teller=0
-		t1=datetime.datetime.now()
+		fh = open("/tmp/rpm0.log", "a")
+		fh.write("%f\n" %rpm )
+		fh.close
+		os.system('/home/pi/size.sh')
+		t1=datetime.now()
