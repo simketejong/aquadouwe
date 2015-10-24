@@ -33,6 +33,7 @@ while True:
 						teller=0
 						p.digital_write(6,1) #uit
 				except:
+ 					#print("oops")
  					sleep(0.1)
 		teller=0
 	teller=teller+1
