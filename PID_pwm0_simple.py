@@ -23,4 +23,12 @@ while True:
 	fh.write("%d" %pid)
 	print ("pid=%f verstuur=%d")%(pid,pid)
 	fh.close
+	try:
+  		with open("/tmp/temperatuur", "r") as fh:
+	   		SetPoint=int(fh.readline())
+			print("SetPoint=%f"%SetPoint)
+			fh.close
+			teller=0
+	except:
+  		SetPoint=35.0
 	sleep(5)
