@@ -24,5 +24,5 @@ while True:
 		fh = open("/tmp/rpm0.log", "a")
 		fh.write("%f\n" %rpm )
 		fh.close
-		os.system('/home/pi/size.sh')
+		os.system('./size.sh')
 		t1=datetime.now()

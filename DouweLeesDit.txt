@@ -1,0 +1,11 @@
+Voor Douwe:
+
+Welke programma's
+read_pwm_nieuw.py --> Deze leest de pulsen, het is niet via interrupt dus als kan natuurlijk een puls missen als CPU druk is met andere dingen. Dat maakt niet uit want 					  PID_pwm0_simple.py regelt de pwm op temeratuur. De read_pwm_nieuw.py schrijft continu naar een log file in /tmp en zorg ook dat file niet te groot 					   worden via size.sh. Zit wel een issue in als het niets leest dan blijft ie de laatste waarde displayen, eerst had ik gebruik gemaakt van tijd maar 						CPU liep op tot 100 %
+PID_pwm0_simple.py --> Deze tegelt de duty cycle van de pwm om de temperatuur constant te houden. Nu doe ik een "cat" op raspberry temp maar straks wordt het een van de 						temperatuur sensors. Heb regeling erg simpel gehouden met een extreem simpele integratie, maar wel met een slime truc. Deze programma doet geeft 						alleen aan wat de duty cycle moet zijn de volgende pwm0.py stuurt het daadwerklijk aan
+pwm0.py				--> deze is de aansturing van de output. De duty cycle heb ik gedaan met sleep. Niet erg snel maar als ik het zo bekijkt werkt het prima
+
+zitten ook wat sleeps in die kunnen er in principe uit, in bovenste programma's
+Met alle in logfiles in /tmp kan jij wat makelijker naar sql sturen als je dat wilt.
+
+De www folder is een copie van /var/www waar de php staat voor grafieken etc
